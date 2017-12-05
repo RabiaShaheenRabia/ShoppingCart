@@ -1,0 +1,32 @@
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'eclipse'
+
+mainClassName = "com.bjss.cart.ShoppingCart"
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+jar {
+    baseName = "ShoppingCart"
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.9'
+    testCompile 'com.github.stefanbirkner:system-rules:1.16.0'
+
+    compile ('org.projectlombok:lombok:1.16.18')
+
+}
+run {
+    args += ['java -cp ShoppingCart.jar com.bjss.cart.ShoppingCart PriceBasket Apples Milk Bread']
+}
+test {
+    testLogging {
+        // Show that tests are run in the command-line output
+        events 'started', 'passed'
+    }
+}
+
